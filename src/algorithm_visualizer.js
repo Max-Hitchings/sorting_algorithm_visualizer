@@ -9,19 +9,14 @@ export default function AlgorithmVisualizer() {
       numArray = [...numArray, Math.floor(Math.random() * Arraylen) + 1];
     }
     console.log(numArray);
-    return (
-      <div>
-        {numArray}
-        sd
-      </div>
-    );
+    return <div>sd</div>;
   }
 
   const ArrayLengthRef = useRef();
   return (
     <div>
       <input ref={ArrayLengthRef} type="number" />
-      <button onClick={GenerateArray}>Generate</button>
+      <button onClick={GenerateArray}>Generate New Array</button>
     </div>
   );
 }
