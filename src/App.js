@@ -1,5 +1,5 @@
 import React from "react";
-import AlgorithmVisualizer from "./algorithm_visualizer";
+import AlgorithmVisualizer from "./algorithm_visualizer.jsx";
 
 function App() {
   return (

@@ -1,0 +1,15 @@
+.arrayContainer {
+  position: absolute;
+  top: 10%;
+  height: 80%;
+  width: 100%;
+  background-color: rgb(230, 230, 230);
+  text-align: center;
+}
+
+.arrayItem {
+  display: inline-block;
+  background-color: rgb(94, 44, 44);
+  float: left;
+  position: relative;
+}
