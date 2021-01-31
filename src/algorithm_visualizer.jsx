@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import CreateArray from "./CreateArray.jsx";
 import "./CreateArray.css";
 import Slider from "@material-ui/core/Slider";
+import bubbleSort from "./algorithms/BubbleSort";
 
 export default function AlgorithmVisualizer() {
   const [currentArray, setcurrentArray] = useState([]);
@@ -9,7 +10,6 @@ export default function AlgorithmVisualizer() {
   const [sliderTime, setsliderTime] = useState(false);
 
   function GenerateArray() {
-    //const Arraylen = ArrayLengthRef.current.value;
     if (sliderTime) {
       const Arraylen = arrayLength;
 
@@ -17,9 +17,7 @@ export default function AlgorithmVisualizer() {
       for (let i = 0; i < Arraylen; i++) {
         numArray = [...numArray, Math.floor(Math.random() * Arraylen) + 1];
       }
-      console.log(numArray);
       setcurrentArray(numArray);
-      console.log("currentArray", currentArray);
       if (sliderTime) {
         setsliderTime(false);
       }
@@ -27,31 +25,54 @@ export default function AlgorithmVisualizer() {
     }
   }
 
+  const bubbleSort = (arr) => {
+    const arrayLength = arr.length;
+    let solved = false;
+    while (!solved) {
+      solved = true;
+      for (var i = 0; i < arrayLength; i++) {
+        if (arr[i + 1] < arr[i]) {
+          let temp1 = arr[i];
+          let temp2 = arr[i + 1];
+          arr[i] = temp2;
+          arr[i + 1] = temp1;
+          //console.log(arr);
+          //console.log(arr[i], "swapping with", arr[i + 1]);
+          solved = false;
+        }
+      }
+    }
+    return arr;
+  };
+
   async function antiSliderSpam() {
     setTimeout(() => {
-      console.log("World!");
       setsliderTime(true);
-      console.log(sliderTime);
     }, 200);
   }
 
   const handleSliderChange = (event, newValue) => {
     setarrayLength(newValue);
     GenerateArray();
-    console.log(newValue);
     antiSliderSpam();
   };
 
-  const handleRegenerate = () => {
+  const handleRegenerateButton = () => {
     GenerateArray();
     antiSliderSpam();
   };
 
-  const ArrayLengthRef = useRef();
-  const slider = useRef();
+  const handleBubbleSort = () => {
+    console.log(bubbleSort([...currentArray]));
+    setcurrentArray(bubbleSort([...currentArray]));
+  };
+
   return (
     <div>
-      <button onClick={handleRegenerate}>Regenerate Current Array</button>
+      <button onClick={handleRegenerateButton}>Regenerate Current Array</button>
+      <button onClick={handleBubbleSort} style={{ marginLeft: 10 }}>
+        BubbleSort
+      </button>
       <Slider
         value={arrayLength}
         onChange={handleSliderChange}
