@@ -5,6 +5,7 @@
   width: 100%;
   background-color: rgb(230, 230, 230);
   text-align: center;
+  white-space: nowrap;
 }
 
 .arrayItem {
