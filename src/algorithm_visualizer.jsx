@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import CreateArray from "./CreateArray.jsx";
 import "./CreateArray.css";
 import Slider from "@material-ui/core/Slider";
-import bubbleSort from "./algorithms/BubbleSort";
+//import { bubbleSort } from "./algorithms/BubbleSort";
+import { v4 as uuidv4 } from "uuid";
+import { color } from "@material-ui/system";
 
 export default function AlgorithmVisualizer() {
   const [currentArray, setcurrentArray] = useState([]);
+  //const [colourArray, setcolourArray] = useState([]);
   const [arrayLength, setarrayLength] = React.useState(30);
   const [sliderTime, setsliderTime] = useState(false);
+
+  function componentDidMount() {
+    console.log("hi");
+  }
 
   function GenerateArray() {
     if (sliderTime) {
@@ -25,12 +32,27 @@ export default function AlgorithmVisualizer() {
     }
   }
 
+  //Sleep function from https://www.sitepoint.com/delay-sleep-pause-wait/
+  function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
+
   const bubbleSort = (arr) => {
     const arrayLength = arr.length;
+    let colourArr = new Array(arrayLength - 1);
+    console.log(colourArr);
+    //setcolourArray(color);
     let solved = false;
     while (!solved) {
       solved = true;
       for (var i = 0; i < arrayLength; i++) {
+        colourArr[i - 1] = colourArr[i] = "Checking";
+        console.log(i, colourArr);
+        //sleep(200);
         if (arr[i + 1] < arr[i]) {
           let temp1 = arr[i];
           let temp2 = arr[i + 1];
@@ -40,9 +62,12 @@ export default function AlgorithmVisualizer() {
           //console.log(arr[i], "swapping with", arr[i + 1]);
           solved = false;
         }
+        colourArr[i - 1] = colourArr[i] = "";
       }
     }
-    return arr;
+    sleep(0);
+
+    setcurrentArray(arr);
   };
 
   async function antiSliderSpam() {
@@ -63,8 +88,8 @@ export default function AlgorithmVisualizer() {
   };
 
   const handleBubbleSort = () => {
-    console.log(bubbleSort([...currentArray]));
-    setcurrentArray(bubbleSort([...currentArray]));
+    bubbleSort([...currentArray]);
+    //setcurrentArray(bubbleSort([...currentArray]));
   };
 
   return (
@@ -79,9 +104,10 @@ export default function AlgorithmVisualizer() {
         aria-labelledby="continuous-slider"
         min={5}
         max={85}
+        key={uuidv4()}
       />
       <div className="arrayContainer">
-        <CreateArray currentArray={[...currentArray]} />
+        <CreateArray currentArray={[...currentArray]} key={uuidv4()} />
       </div>
     </div>
   );

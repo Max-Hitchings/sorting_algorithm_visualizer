@@ -1,4 +1,4 @@
-const bubbleSort = (arr) => {
+/*export const bubbleSort = (arr) => {
   const arrayLength = arr.length;
   let solved = false;
   while (!solved) {
@@ -15,5 +15,7 @@ const bubbleSort = (arr) => {
       }
     }
   }
+  //setcurrentArray(arr);
   return arr;
 };
+*/
