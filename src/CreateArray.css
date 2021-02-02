@@ -9,11 +9,6 @@
 }
 
 .arrayItem {
-  display: inline-block;
   float: left;
   position: relative;
-}
-
-.testing {
-  color: rgb(14, 128, 194);
 }
