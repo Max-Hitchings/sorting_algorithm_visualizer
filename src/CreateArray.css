@@ -10,7 +10,10 @@
 
 .arrayItem {
   display: inline-block;
-  background-color: rgb(94, 44, 44);
   float: left;
   position: relative;
+}
+
+.testing {
+  color: rgb(14, 128, 194);
 }

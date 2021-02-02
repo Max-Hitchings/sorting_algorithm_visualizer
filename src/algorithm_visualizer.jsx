@@ -1,22 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CreateArray from "./CreateArray.jsx";
 import "./CreateArray.css";
 import Slider from "@material-ui/core/Slider";
-//import { bubbleSort } from "./algorithms/BubbleSort";
 import { v4 as uuidv4 } from "uuid";
-import { color } from "@material-ui/system";
 
 export default function AlgorithmVisualizer() {
   const [currentArray, setcurrentArray] = useState([]);
-  //const [colourArray, setcolourArray] = useState([]);
   const [arrayLength, setarrayLength] = React.useState(30);
   const [sliderTime, setsliderTime] = useState(false);
+  const [checkingList, setcheckingList] = useState([]);
 
-  function componentDidMount() {
-    console.log("hi");
-  }
-
-  function GenerateArray() {
+  const GenerateArray = () => {
     if (sliderTime) {
       const Arraylen = arrayLength;
 
@@ -30,44 +24,39 @@ export default function AlgorithmVisualizer() {
       }
       return numArray;
     }
-  }
+  };
 
   //Sleep function from https://www.sitepoint.com/delay-sleep-pause-wait/
-  function sleep(milliseconds) {
+  const sleep = (milliseconds) => {
     const date = Date.now();
     let currentDate = null;
     do {
       currentDate = Date.now();
     } while (currentDate - date < milliseconds);
-  }
+  };
 
   const bubbleSort = (arr) => {
+    //console.log("bubble sort");
     const arrayLength = arr.length;
-    let colourArr = new Array(arrayLength - 1);
-    console.log(colourArr);
-    //setcolourArray(color);
     let solved = false;
     while (!solved) {
       solved = true;
       for (var i = 0; i < arrayLength; i++) {
-        colourArr[i - 1] = colourArr[i] = "Checking";
-        console.log(i, colourArr);
-        //sleep(200);
+        setcheckingList([i, i - 1]);
+        setcurrentArray(arr);
+
+        //console.log("Checking ", [i, i + 1]);
+        document.getElementById("1").style.backgroundColor = "lightblue";
+        sleep(0);
         if (arr[i + 1] < arr[i]) {
           let temp1 = arr[i];
           let temp2 = arr[i + 1];
           arr[i] = temp2;
           arr[i + 1] = temp1;
-          //console.log(arr);
-          //console.log(arr[i], "swapping with", arr[i + 1]);
           solved = false;
         }
-        colourArr[i - 1] = colourArr[i] = "";
       }
     }
-    sleep(0);
-
-    setcurrentArray(arr);
   };
 
   async function antiSliderSpam() {
@@ -82,21 +71,30 @@ export default function AlgorithmVisualizer() {
     antiSliderSpam();
   };
 
-  const handleRegenerateButton = () => {
-    GenerateArray();
-    antiSliderSpam();
-  };
-
-  const handleBubbleSort = () => {
-    bubbleSort([...currentArray]);
-    //setcurrentArray(bubbleSort([...currentArray]));
-  };
-
   return (
     <div>
-      <button onClick={handleRegenerateButton}>Regenerate Current Array</button>
-      <button onClick={handleBubbleSort} style={{ marginLeft: 10 }}>
+      <button
+        onClick={() => {
+          GenerateArray();
+          antiSliderSpam();
+        }}
+      >
+        Regenerate Current Array
+      </button>
+      <button
+        onClick={() => {
+          bubbleSort([...currentArray]);
+        }}
+        style={{ marginLeft: 10 }}
+      >
         BubbleSort
+      </button>
+      <button
+        onClick={() => {
+          setcheckingList([]);
+        }}
+      >
+        Reset Colours
       </button>
       <Slider
         value={arrayLength}
@@ -104,10 +102,13 @@ export default function AlgorithmVisualizer() {
         aria-labelledby="continuous-slider"
         min={5}
         max={85}
-        key={uuidv4()}
       />
       <div className="arrayContainer">
-        <CreateArray currentArray={[...currentArray]} key={uuidv4()} />
+        <CreateArray
+          currentArray={currentArray}
+          checkingList={checkingList}
+          key={uuidv4()}
+        />
       </div>
     </div>
   );
