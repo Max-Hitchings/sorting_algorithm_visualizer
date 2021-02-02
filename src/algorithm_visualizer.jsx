@@ -35,18 +35,31 @@ export default function AlgorithmVisualizer() {
     } while (currentDate - date < milliseconds);
   };
 
-  const bubbleSort = (arr) => {
+  // Have to do it asynchronous so the array can still rerender
+  // Video used to understand promises: https://www.youtube.com/watch?v=V_Kr9OSfDeU&ab_channel=WebDevSimplified
+  const asyncDelay = ({ timePeriod } = {}) => {
+    return new Promise((resolve, reject) =>
+      setTimeout(() => resolve(), timePeriod)
+    );
+  };
+
+  const bubbleSort = async (arr) => {
     //console.log("bubble sort");
     const arrayLength = arr.length;
     let solved = false;
     while (!solved) {
       solved = true;
       for (var i = 0; i < arrayLength; i++) {
-        setcheckingList([i, i - 1]);
-        setcurrentArray(arr);
-
-        //console.log("Checking ", [i, i + 1]);
-        document.getElementById("1").style.backgroundColor = "lightblue";
+        await setcheckingList([i, i + 1]);
+        console.log(
+          "Checking list front " + checkingList + " Should be " + i,
+          i + 1
+        );
+        await setcurrentArray(arr);
+        console.log(currentArray);
+        console.log("Timeout start");
+        await asyncDelay({ timePeriod: 500 });
+        console.log("Timeout end");
         sleep(0);
         if (arr[i + 1] < arr[i]) {
           let temp1 = arr[i];
