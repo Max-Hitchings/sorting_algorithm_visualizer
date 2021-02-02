@@ -9,11 +9,11 @@ export default function AlgorithmVisualizer() {
   const [arrayLength, setarrayLength] = React.useState(30);
   const [sliderTime, setsliderTime] = useState(false);
   const [checkingList, setcheckingList] = useState([]);
+  const [wrongList, setwrongList] = useState([]);
 
   const GenerateArray = () => {
     if (sliderTime) {
       const Arraylen = arrayLength;
-
       let numArray = [];
       for (let i = 0; i < Arraylen; i++) {
         numArray = [...numArray, Math.floor(Math.random() * Arraylen) + 1];
@@ -37,39 +37,38 @@ export default function AlgorithmVisualizer() {
 
   // Have to do it asynchronous so the array can still rerender
   // Video used to understand promises: https://www.youtube.com/watch?v=V_Kr9OSfDeU&ab_channel=WebDevSimplified
-  const asyncDelay = ({ timePeriod } = {}) => {
+  const asyncDelay = (time) => {
     return new Promise((resolve, reject) =>
-      setTimeout(() => resolve(), timePeriod)
+      setTimeout(() => {
+        return resolve();
+      }, time)
     );
   };
 
   const bubbleSort = async (arr) => {
-    //console.log("bubble sort");
     const arrayLength = arr.length;
     let solved = false;
     while (!solved) {
       solved = true;
       for (var i = 0; i < arrayLength; i++) {
         await setcheckingList([i, i + 1]);
-        console.log(
-          "Checking list front " + checkingList + " Should be " + i,
-          i + 1
-        );
         await setcurrentArray(arr);
-        console.log(currentArray);
-        console.log("Timeout start");
-        await asyncDelay({ timePeriod: 500 });
-        console.log("Timeout end");
-        sleep(0);
+        await asyncDelay(500);
         if (arr[i + 1] < arr[i]) {
+          await setwrongList([i]);
+          await asyncDelay(500);
           let temp1 = arr[i];
           let temp2 = arr[i + 1];
           arr[i] = temp2;
           arr[i + 1] = temp1;
           solved = false;
+          await setwrongList([i + 1]);
+          await asyncDelay(500);
         }
+        await setwrongList([]);
       }
     }
+    setcheckingList([]);
   };
 
   async function antiSliderSpam() {
@@ -120,6 +119,7 @@ export default function AlgorithmVisualizer() {
         <CreateArray
           currentArray={currentArray}
           checkingList={checkingList}
+          wrongList={wrongList}
           key={uuidv4()}
         />
       </div>
