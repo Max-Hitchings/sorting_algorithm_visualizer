@@ -3,4 +3,5 @@
 https://gk41.github.io/sorting_algorithm_visualizer/
 
 Learning how to use react js
-Made from scratch my me using react
+
+Made from scratch by me using react
