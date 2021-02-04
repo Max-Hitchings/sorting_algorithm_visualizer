@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import CreateArray from "./CreateArray.jsx";
-import "./CreateArray.css";
+import "../css/CreateArray.css";
 import { v4 as uuidv4 } from "uuid";
-import "./algorithm_visualizer.css";
+import "../css/algorithm_visualizer.css";
 //import CustomizedSlider from "./Slider";
-import PrettoSlider from "./Slider";
-import ColorButton from "./ButtonBlue";
+import PrettoSlider from "./material-ui/Slider";
+import ColorButton from "./material-ui/Button";
 
 //this makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
