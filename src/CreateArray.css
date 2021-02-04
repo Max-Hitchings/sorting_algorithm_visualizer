@@ -1,14 +1,18 @@
 .arrayContainer {
-  position: absolute;
-  top: 10%;
-  height: 80%;
-  width: 100%;
-  background-color: rgb(230, 230, 230);
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 81%;
+  width: 98%;
+  left: 1%;
   text-align: center;
   white-space: nowrap;
 }
 
 .arrayItem {
-  float: left;
   position: relative;
+  font-size: large;
+  color: #0b0c10;
+  font-family: "Oswald", sans-serif;
 }

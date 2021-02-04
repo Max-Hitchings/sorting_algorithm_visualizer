@@ -12,12 +12,12 @@ export default function CreateArray({
   const margin = currentArray.length < 91 ? 1 : 0;
   return currentArray.map((arrayItem, index) => {
     const backColour = isListSolved
-      ? "rgb(30, 139, 36)"
+      ? " rgb(66, 190, 72)"
       : wrongList.includes(index)
-      ? "rgb(255,0,0)"
+      ? "#f34d5e" //"rgb(183, 27, 245)"
       : checkingList.includes(index)
-      ? "rgb(14, 128, 194)"
-      : "rgb(94, 44, 44)";
+      ? "#66FCF1" //"rgb(14, 128, 194)"
+      : "#45A29E";
 
     const innerNum = currentArray.length < 45 ? arrayItem : null;
     return (
@@ -29,8 +29,6 @@ export default function CreateArray({
           width: width + "%",
           height: (arrayItem / currentArray.length) * 100 + "%",
           backgroundColor: backColour,
-          fontSize: "large",
-          color: "white",
         }}
       >
         {innerNum}

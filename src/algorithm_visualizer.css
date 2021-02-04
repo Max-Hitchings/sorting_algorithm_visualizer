@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  background-color: #1f2833;
+  overflow: hidden;
+}
+
+.controlBar {
+  position: relative;
+  width: 100%;
+  height: 10%;
+  margin: 20px;
+  color: #f5828f;
+}
