@@ -3,9 +3,10 @@ import CreateArray from "./CreateArray.jsx";
 import "../css/CreateArray.css";
 import { v4 as uuidv4 } from "uuid";
 import "../css/algorithm_visualizer.css";
-//import CustomizedSlider from "./Slider";
 import PrettoSlider from "./material-ui/Slider";
 import ColorButton from "./material-ui/Button";
+import BubbleSort from "./algorithms/BubbleSort";
+import SelectionSort from "./algorithms/SelectionSort";
 
 //this makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
@@ -18,7 +19,8 @@ export default function AlgorithmVisualizer() {
   const [wrongList, setwrongList] = useState([]);
   const [isListSolved, setisListSolved] = useState(false);
   const [solveSpeed, setsolveSpeed] = useState(500);
-  //const [sortSpeed, setsortSpeed] = useState(500);
+  const [solvedList, setsolvedList] = useState([]);
+  const [pivot, setpivot] = useState([]);
 
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
@@ -28,6 +30,7 @@ export default function AlgorithmVisualizer() {
 
   const GenerateArray = () => {
     setisListSolved(false);
+    setsolvedList([]);
     //will only make a new array if the antiSpamSlider funcion isnt running (if the sliderTime variable is false)
     if (sliderTime) {
       const Arraylen = arrayLength;
@@ -45,47 +48,6 @@ export default function AlgorithmVisualizer() {
     }
   };
 
-  // Have to do it asynchronous so the array can still rerender each time I update a state variable and not just at the end of the function
-  // Video used to understand promises: https://www.youtube.com/watch?v=V_Kr9OSfDeU&ab_channel=WebDevSimplified
-  const asyncDelay = (time) => {
-    return new Promise((resolve, reject) =>
-      setTimeout(() => {
-        return resolve();
-      }, time)
-    );
-  };
-
-  //had to make this asynchronous and use await's because when react updates state variables it does it asynchronously and merges all state updates
-  //therefore I wouldn't be able to add delays between each state update becasue it would update them all at the end of the function not when I call them
-  //so I am doing it like this that took so many hours to work out btw :)
-  const bubbleSort = async (arr) => {
-    await setisListSolved(false);
-    const arrayLength = arr.length;
-    let solved = false;
-    while (!solved) {
-      solved = true;
-      for (var i = 0; i < arrayLength; i++) {
-        await setcheckingList([i, i + 1]);
-        await setcurrentArray(arr);
-        await asyncDelay(solveSpeed);
-        if (arr[i + 1] < arr[i]) {
-          await setwrongList([i]);
-          await asyncDelay(solveSpeed);
-          let temp1 = arr[i];
-          let temp2 = arr[i + 1];
-          arr[i] = temp2;
-          arr[i + 1] = temp1;
-          solved = false;
-          await setwrongList([i + 1]);
-          await asyncDelay(solveSpeed);
-        }
-        await setwrongList([]);
-      }
-    }
-    setcheckingList([]);
-    await setisListSolved(true);
-  };
-
   //this make a timer that runs in the background so when you move the slider it doesent regenerate the array to many times
   async function antiSliderSpam() {
     setTimeout(() => {
@@ -100,12 +62,7 @@ export default function AlgorithmVisualizer() {
   };
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        position: "relative",
-      }}
-    >
+    <div id="algorithmVisuliser_container">
       <div className="controlBar">
         <ColorButton
           variant="contained"
@@ -119,11 +76,37 @@ export default function AlgorithmVisualizer() {
         <ColorButton
           variant="contained"
           onClick={() => {
-            bubbleSort([...currentArray]);
+            BubbleSort(
+              [...currentArray],
+              setisListSolved,
+              setcheckingList,
+              setcurrentArray,
+              solveSpeed,
+              setwrongList
+            );
           }}
-          style={{ marginLeft: 10, marginRight: 10 }}
+          style={{ marginLeft: 10 }}
         >
           BubbleSort
+        </ColorButton>
+        <ColorButton
+          variant="contained"
+          onClick={() => {
+            SelectionSort(
+              [...currentArray],
+              setisListSolved,
+              setcheckingList,
+              setcurrentArray,
+              solveSpeed,
+              setwrongList,
+              setsolvedList,
+              solvedList,
+              setpivot
+            );
+          }}
+          style={{ marginLeft: 10 }}
+        >
+          SelectionSort (In development)
         </ColorButton>
         <div style={{ display: "flex" }}>
           <div>
@@ -138,6 +121,7 @@ export default function AlgorithmVisualizer() {
               Array Size:
             </div>
             <PrettoSlider
+              className="topSlider"
               value={arrayLength}
               onChange={handleSliderChange}
               valueLabelDisplay="auto"
@@ -147,22 +131,13 @@ export default function AlgorithmVisualizer() {
               max={90}
               style={{
                 width: 300,
-                marginLeft: 20,
               }}
             />
           </div>
           <div>
-            <div
-              style={{
-                fontSize: 20,
-                fontWeight: 800,
-                color: "#45A29E",
-                fontFamily: "Sriracha, cursive",
-              }}
-            >
-              Sort Speed:
-            </div>
+            <div className="sliderText">Sort Speed:</div>
             <PrettoSlider
+              className="topSlider"
               value={solveSpeed}
               onChange={(event, newValue) => {
                 setsolveSpeed(newValue);
@@ -185,6 +160,8 @@ export default function AlgorithmVisualizer() {
           checkingList={checkingList}
           wrongList={wrongList}
           isListSolved={isListSolved}
+          solvedList={solvedList}
+          pivot={pivot}
           key={uuidv4()}
         />
       </div>

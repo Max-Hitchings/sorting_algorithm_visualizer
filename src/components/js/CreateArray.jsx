@@ -7,12 +7,18 @@ export default function CreateArray({
   checkingList,
   wrongList,
   isListSolved,
+  solvedList,
+  pivot,
 }) {
   const width = 95 / currentArray.length;
   const margin = currentArray.length < 91 ? 1 : 0;
   return currentArray.map((arrayItem, index) => {
     const backColour = isListSolved
       ? " rgb(66, 190, 72)"
+      : solvedList.includes(index)
+      ? "rgb(66, 190, 72)"
+      : pivot.includes(index)
+      ? "rgb(235, 100, 10)"
       : wrongList.includes(index)
       ? "#f34d5e" //"rgb(183, 27, 245)"
       : checkingList.includes(index)
