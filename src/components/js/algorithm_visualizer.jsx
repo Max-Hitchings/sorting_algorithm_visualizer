@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CreateArray from "./CreateArray.jsx";
 import "../css/CreateArray.css";
 import { v4 as uuidv4 } from "uuid";
@@ -21,6 +21,7 @@ export default function AlgorithmVisualizer() {
   const [solveSpeed, setsolveSpeed] = useState(500);
   const [solvedList, setsolvedList] = useState([]);
   const [pivot, setpivot] = useState([]);
+  const [currentAlgorithm, setcurrentAlgorithm] = useState("");
 
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
@@ -62,7 +63,7 @@ export default function AlgorithmVisualizer() {
   };
 
   return (
-    <div id="algorithmVisuliser_container">
+    <div id="algorithmVisuliser_container" style={{ width: "100%" }}>
       <div className="controlBar">
         <ColorButton
           variant="contained"
@@ -92,21 +93,19 @@ export default function AlgorithmVisualizer() {
         <ColorButton
           variant="contained"
           onClick={() => {
+            //console.log(currentArray);
             SelectionSort(
               [...currentArray],
-              setisListSolved,
               setcheckingList,
               setcurrentArray,
               solveSpeed,
-              setwrongList,
               setsolvedList,
-              solvedList,
               setpivot
             );
           }}
           style={{ marginLeft: 10 }}
         >
-          SelectionSort (In development)
+          SelectionSort
         </ColorButton>
         <div style={{ display: "flex" }}>
           <div>

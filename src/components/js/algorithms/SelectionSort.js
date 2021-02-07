@@ -2,41 +2,47 @@ import asyncDelay from "./delay";
 
 const SelectionSort = async (
   arr,
-  setisListSolved,
   setcheckingList,
   setcurrentArray,
   solveSpeed,
-  setwrongList,
   setsolvedList,
-  solvedList,
   setpivot
 ) => {
   //const arr = [2, 8, 5, 3, 9, 4, 1, 4, 7, 1, 3, 8];
   var solvedItems = [];
   for (let x = 0; x < arr.length; x++) {
-    var currentBase = x;
-    var currentMin = arr[x];
+    var currentMin = x;
 
     for (let i = x; i < arr.length; i++) {
-      await setcheckingList([i]);
-      await asyncDelay(solveSpeed / 2);
+      setcheckingList([i]);
+      setpivot([currentMin]);
+      await asyncDelay(solveSpeed);
       if (arr[i] < arr[currentMin]) {
         currentMin = i;
-        await setpivot([currentMin]);
-        await asyncDelay(solveSpeed);
       }
-      await setcheckingList([i]);
-      await asyncDelay(solveSpeed / 2);
     }
     const temp1 = arr[x];
+    console.log(
+      "arr[x]:",
+      arr[x],
+      "arr[min]:",
+      arr[currentMin],
+      "min:",
+      currentMin
+    );
     arr[x] = arr[currentMin];
     arr[currentMin] = temp1;
-    await setcurrentArray(arr);
-    solvedItems.push(currentBase);
-    await setsolvedList([...solvedItems]);
-    await setpivot([]);
+    setcurrentArray(arr);
+
+    solvedItems.push(x);
+    setsolvedList([...solvedItems]);
+    setpivot([]);
     await asyncDelay(solveSpeed);
+
+    console.log(x);
   }
+  setcurrentArray(arr);
+  setcheckingList([]);
 };
 
 export default SelectionSort;
