@@ -1,18 +1,8 @@
 import React, { useRef } from "react";
-import data from "./EndInfoData";
 import "../css/endInfo.css";
 import Typography from "@material-ui/core/Typography";
 
 export default function EndInfo(checkCount) {
-  const log = () => {
-    console.log(data);
-    //const hi = document.getElementById("test1");
-    //document.getElementById(test2.current.id).style.transform =
-    //  "rotate(180deg)";
-    //hi.style.opacity = "0";
-    //console.log("shush", test2.current.style);
-  };
-
   const showInfo = () => {
     document.getElementById(endInfo.current.id).style.top = "0";
   };
