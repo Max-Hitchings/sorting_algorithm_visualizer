@@ -9,17 +9,20 @@ const BubbleSort = async (
   setcheckingList,
   setcurrentArray,
   solveSpeed,
-  setwrongList
+  setwrongList,
+  setcheckCount
 ) => {
   await setisListSolved(false);
   const arrayLength = arr.length;
   let solved = false;
+  var count = 0;
   while (!solved) {
     solved = true;
     for (var i = 0; i < arrayLength; i++) {
       await setcheckingList([i, i + 1]);
       await setcurrentArray(arr);
       await asyncDelay(solveSpeed);
+      count += 1;
       if (arr[i + 1] < arr[i]) {
         await setwrongList([i]);
         await asyncDelay(solveSpeed);
@@ -36,6 +39,8 @@ const BubbleSort = async (
   }
   setcheckingList([]);
   await setisListSolved(true);
+  setcheckCount(count);
+  document.getElementById("endInfo").style.top = "0";
 };
 
 export default BubbleSort;

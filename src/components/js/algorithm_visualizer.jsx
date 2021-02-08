@@ -88,7 +88,8 @@ export default function AlgorithmVisualizer() {
               setcheckingList,
               setcurrentArray,
               solveSpeed,
-              setwrongList
+              setwrongList,
+              setcheckCount
             );
           }}
           style={{ marginLeft: 10 }}
