@@ -10,8 +10,10 @@ const BubbleSort = async (
   setcurrentArray,
   solveSpeed,
   setwrongList,
-  setcheckCount
+  setcheckCount,
+  setsolvedList
 ) => {
+  await setsolvedList([]);
   await setisListSolved(false);
   const arrayLength = arr.length;
   let solved = false;

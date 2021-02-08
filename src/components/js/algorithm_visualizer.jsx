@@ -89,7 +89,8 @@ export default function AlgorithmVisualizer() {
               setcurrentArray,
               solveSpeed,
               setwrongList,
-              setcheckCount
+              setcheckCount,
+              setsolvedList
             );
           }}
           style={{ marginLeft: 10 }}
@@ -107,7 +108,8 @@ export default function AlgorithmVisualizer() {
               solveSpeed,
               setsolvedList,
               setpivot,
-              setcheckCount
+              setcheckCount,
+              setisListSolved
             );
           }}
           style={{ marginLeft: 10 }}

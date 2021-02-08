@@ -7,9 +7,12 @@ const SelectionSort = async (
   solveSpeed,
   setsolvedList,
   setpivot,
-  setcheckCount
+  setcheckCount,
+  setisListSolved
 ) => {
   //const arr = [2, 8, 5, 3, 9, 4, 1, 4, 7, 1, 3, 8];
+  await setisListSolved(false);
+  await setsolvedList([]);
   var solvedItems = [];
   var count = 0;
   for (let x = 0; x < arr.length; x++) {
