@@ -7,6 +7,8 @@ import PrettoSlider from "./material-ui/Slider";
 import ColorButton from "./material-ui/Button";
 import BubbleSort from "./algorithms/BubbleSort";
 import SelectionSort from "./algorithms/SelectionSort";
+import EndInfo from "./EndInfo";
+import ReactGa from "react-ga";
 
 //this makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
@@ -22,10 +24,13 @@ export default function AlgorithmVisualizer() {
   const [solvedList, setsolvedList] = useState([]);
   const [pivot, setpivot] = useState([]);
   const [currentAlgorithm, setcurrentAlgorithm] = useState("");
+  const [checkCount, setcheckCount] = useState(0);
 
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
   useEffect(() => {
+    ReactGa.initialize("G-BQ530QZ667");
+    ReactGa.pageview("/");
     GenerateArray();
   }, []);
 
@@ -100,7 +105,8 @@ export default function AlgorithmVisualizer() {
               setcurrentArray,
               solveSpeed,
               setsolvedList,
-              setpivot
+              setpivot,
+              setcheckCount
             );
           }}
           style={{ marginLeft: 10 }}
@@ -164,6 +170,7 @@ export default function AlgorithmVisualizer() {
           key={uuidv4()}
         />
       </div>
+      <EndInfo checkCount={checkCount} />
     </div>
   );
 }

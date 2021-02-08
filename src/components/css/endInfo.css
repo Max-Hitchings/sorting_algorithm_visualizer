@@ -1,0 +1,27 @@
+.endInfo_container {
+  width: 15%;
+  height: 100px;
+  border-radius: 20%;
+  top: -150px;
+  right: 42.5%;
+  background: #66fcf1;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: absolute;
+  transition: all 0.75s cubic-bezier(0.17, 0.67, 0.68, 1.7);
+}
+
+.endInfo_counterText {
+  color: #0b0c10;
+}
+
+.endInfoClose {
+  top: -10px;
+  right: 5%;
+  position: absolute;
+  font-size: 36px;
+  font-weight: 700;
+  cursor: pointer;
+}

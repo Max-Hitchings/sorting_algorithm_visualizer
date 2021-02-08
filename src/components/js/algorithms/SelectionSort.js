@@ -6,20 +6,23 @@ const SelectionSort = async (
   setcurrentArray,
   solveSpeed,
   setsolvedList,
-  setpivot
+  setpivot,
+  setcheckCount
 ) => {
   //const arr = [2, 8, 5, 3, 9, 4, 1, 4, 7, 1, 3, 8];
   var solvedItems = [];
+  var count = 0;
   for (let x = 0; x < arr.length; x++) {
     var currentMin = x;
 
     for (let i = x; i < arr.length; i++) {
       setcheckingList([i]);
-      setpivot([currentMin]);
-      await asyncDelay(solveSpeed);
+      count += 1;
       if (arr[i] < arr[currentMin]) {
         currentMin = i;
+        setpivot([currentMin]);
       }
+      await asyncDelay(solveSpeed);
     }
     const temp1 = arr[x];
     console.log(
@@ -43,6 +46,8 @@ const SelectionSort = async (
   }
   setcurrentArray(arr);
   setcheckingList([]);
+  setcheckCount(count);
+  document.getElementById("endInfo").style.top = "0";
 };
 
 export default SelectionSort;
