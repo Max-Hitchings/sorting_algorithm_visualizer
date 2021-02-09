@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import CreateArray from "./CreateArray.jsx";
 import "../css/CreateArray.css";
 import { v4 as uuidv4 } from "uuid";
@@ -9,6 +9,7 @@ import BubbleSort from "./algorithms/BubbleSort";
 import SelectionSort from "./algorithms/SelectionSort";
 import EndInfo from "./EndInfo";
 import ReactGa from "react-ga";
+import BarChartIcon from "@material-ui/icons/BarChart";
 
 //this makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
@@ -23,7 +24,6 @@ export default function AlgorithmVisualizer() {
   const [solveSpeed, setsolveSpeed] = useState(500);
   const [solvedList, setsolvedList] = useState([]);
   const [pivot, setpivot] = useState([]);
-  const [currentAlgorithm, setcurrentAlgorithm] = useState("");
   const [checkCount, setcheckCount] = useState(0);
 
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
@@ -94,6 +94,7 @@ export default function AlgorithmVisualizer() {
             );
           }}
           style={{ marginLeft: 10 }}
+          startIcon={<BarChartIcon />}
         >
           BubbleSort
         </ColorButton>
@@ -113,6 +114,7 @@ export default function AlgorithmVisualizer() {
             );
           }}
           style={{ marginLeft: 10 }}
+          startIcon={<BarChartIcon />}
         >
           SelectionSort
         </ColorButton>

@@ -3,9 +3,6 @@ import "../css/endInfo.css";
 import Typography from "@material-ui/core/Typography";
 
 export default function EndInfo(checkCount) {
-  const showInfo = () => {
-    document.getElementById(endInfo.current.id).style.top = "0";
-  };
   const hideInfo = () => {
     document.getElementById(endInfo.current.id).style.top = "-150px";
   };
