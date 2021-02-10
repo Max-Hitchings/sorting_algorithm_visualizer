@@ -61,8 +61,8 @@ export default function AlgorithmVisualizer() {
     }, 200);
   }
 
-  const handleSliderChange = (event, newValue) => {
-    setarrayLength(newValue);
+  const handleSliderChange = async (event, newValue) => {
+    await setarrayLength(newValue);
     GenerateArray();
     antiSliderSpam();
   };
