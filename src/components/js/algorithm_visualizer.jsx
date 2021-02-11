@@ -27,6 +27,9 @@ export default function AlgorithmVisualizer() {
 
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
+  useEffect(() => {
+    GenerateArray();
+  }, []);
 
   const GenerateArray = () => {
     setisListSolved(false);
