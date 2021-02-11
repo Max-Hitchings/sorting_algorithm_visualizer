@@ -9,6 +9,9 @@ import BubbleSort from "./algorithms/BubbleSort";
 import SelectionSort from "./algorithms/SelectionSort";
 import EndInfo from "./EndInfo";
 import BarChartIcon from "@material-ui/icons/BarChart";
+import ReactGA from "react-ga";
+
+ReactGA.initialize("G-0RSLVT5X7B");
 
 //this makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
@@ -28,6 +31,7 @@ export default function AlgorithmVisualizer() {
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
   useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
     GenerateArray();
   }, []);
 
