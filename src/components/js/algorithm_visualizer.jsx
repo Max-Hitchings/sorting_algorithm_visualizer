@@ -11,7 +11,7 @@ import EndInfo from "./EndInfo";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import ReactGA from "react-ga";
 
-ReactGA.initialize("G-0RSLVT5X7B");
+ReactGA.initialize("G-S38GB37PJM");
 
 //this makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
