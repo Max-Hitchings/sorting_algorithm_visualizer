@@ -1,9 +1,9 @@
 # The website is at:
 
-https://gk41.github.io/sorting_algorithm_visualizer/
+https://www.max-hitchings.com/
 
 Learning how to use react js
 
 Made from scratch by me using react and some material ui components
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/5e2906fe-320f-4dce-a6b7-79082ae6b9ba/deploy-status)](https://sorting-algorithm-visualiser-gk.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/08d4f1c5-8d1c-48e7-a560-9cc69ac8d335/deploy-status)](https://www.max-hitchings.com/)
