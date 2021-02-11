@@ -25,6 +25,7 @@ export default function AlgorithmVisualizer() {
   const [solvedList, setsolvedList] = useState([]);
   const [pivot, setpivot] = useState([]);
   const [checkCount, setcheckCount] = useState(0);
+  const [sortRunning, setsortRunning] = useState(false);
 
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
@@ -69,6 +70,7 @@ export default function AlgorithmVisualizer() {
     <div id="algorithmVisuliser_container" style={{ width: "100%" }}>
       <div className="controlBar">
         <ColorButton
+          disabled={sortRunning}
           variant="contained"
           onClick={() => {
             GenerateArray();
@@ -78,6 +80,7 @@ export default function AlgorithmVisualizer() {
           Regenerate Current Array
         </ColorButton>
         <ColorButton
+          disabled={sortRunning}
           variant="contained"
           onClick={() => {
             BubbleSort(
@@ -88,7 +91,8 @@ export default function AlgorithmVisualizer() {
               solveSpeed,
               setwrongList,
               setcheckCount,
-              setsolvedList
+              setsolvedList,
+              setsortRunning
             );
           }}
           style={{ marginLeft: 10 }}
@@ -97,6 +101,7 @@ export default function AlgorithmVisualizer() {
           BubbleSort
         </ColorButton>
         <ColorButton
+          disabled={sortRunning}
           variant="contained"
           onClick={() => {
             //console.log(currentArray);
@@ -108,7 +113,8 @@ export default function AlgorithmVisualizer() {
               setsolvedList,
               setpivot,
               setcheckCount,
-              setisListSolved
+              setisListSolved,
+              setsortRunning
             );
           }}
           style={{ marginLeft: 10 }}

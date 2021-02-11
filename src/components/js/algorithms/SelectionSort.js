@@ -8,8 +8,10 @@ const SelectionSort = async (
   setsolvedList,
   setpivot,
   setcheckCount,
-  setisListSolved
+  setisListSolved,
+  setsortRunning
 ) => {
+  await setsortRunning(true);
   //const arr = [2, 8, 5, 3, 9, 4, 1, 4, 7, 1, 3, 8];
   await setisListSolved(false);
   await setsolvedList([]);
@@ -51,6 +53,7 @@ const SelectionSort = async (
   setcheckingList([]);
   setcheckCount(count);
   document.getElementById("endInfo").style.top = "0";
+  await setsortRunning(false);
 };
 
 export default SelectionSort;
