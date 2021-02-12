@@ -1,4 +1,5 @@
-import asyncDelay from "./delay";
+import asyncDelay from "../functions/delay";
+import abandon from "../functions/abandon";
 
 const SelectionSort = async (
   arr,
@@ -22,6 +23,11 @@ const SelectionSort = async (
     var currentMin = x;
 
     for (let i = x; i < arr.length; i++) {
+      if (paused.current) {
+        abandon(setcheckingList, setpivot, setsortRunning);
+        paused.current = !paused.current;
+        return;
+      }
       setcheckingList([i]);
       count += 1;
       if (arr[i] < arr[currentMin]) {

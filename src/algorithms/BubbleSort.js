@@ -1,4 +1,5 @@
-import asyncDelay from "./delay";
+import asyncDelay from "../functions/delay";
+import abandon from "../functions/abandon";
 
 //had to make this asynchronous and use await's because when react updates state variables it does it asynchronously and merges all state updates
 //therefore I wouldn't be able to add delays between each state update becasue it would update them all at the end of the function not when I call them
@@ -13,7 +14,8 @@ const BubbleSort = async (
   setcheckCount,
   setsolvedList,
   setsortRunning,
-  paused
+  paused,
+  setpivot
 ) => {
   await setsortRunning(true);
   setsolvedList([]);
@@ -25,9 +27,7 @@ const BubbleSort = async (
     solved = true;
     for (var i = 0; i < arrayLength; i++) {
       if (paused.current) {
-        setcheckingList([]);
-        setcheckCount(count);
-        await setsortRunning(false);
+        abandon(setcheckingList, setpivot, setsortRunning);
         paused.current = !paused.current;
         return;
       }

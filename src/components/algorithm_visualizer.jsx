@@ -5,11 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 import "../css/algorithm_visualizer.css";
 import PrettoSlider from "./material-ui/Slider";
 import ColorButton from "./material-ui/Button";
-import BubbleSort from "./algorithms/BubbleSort";
-import SelectionSort from "./algorithms/SelectionSort";
+import BubbleSort from "../algorithms/BubbleSort";
+import SelectionSort from "../algorithms/SelectionSort";
 import EndInfo from "./EndInfo";
 import BarChartIcon from "@material-ui/icons/BarChart";
-import ReactGA from "react-ga";
 
 //tpauseds makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
@@ -26,28 +25,32 @@ export default function AlgorithmVisualizer() {
   const [pivot, setpivot] = useState([]);
   const [checkCount, setcheckCount] = useState(0);
   const [sortRunning, setsortRunning] = useState(false);
-  //const [paused, setpaused] = useState(false);
+  const [baseArray, setbaseArray] = useState([]);
   var paused = useRef(false);
-
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
   useEffect(() => {
-    GenerateArray();
+    GenerateArray("new");
   }, []);
 
-  const GenerateArray = () => {
+  const GenerateArray = (generateNew) => {
     setisListSolved(false);
     setsolvedList([]);
     //will only make a new array if the antiSpamSlider funcion isnt running (if the sliderTime variable is false)
     if (sliderTime) {
       const Arraylen = arrayLength;
       let numArray = [];
-      for (let i = 0; i < Arraylen; i++) {
-        //adds a new random number to the array
-        //should probably use .push here will update soon
-        numArray = [...numArray, Math.floor(Math.random() * Arraylen) + 1];
+      if (generateNew === "new") {
+        for (let i = 0; i < Arraylen; i++) {
+          //adds a new random number to the array
+          //should probably use .push here will update soon
+          numArray = [...numArray, Math.floor(Math.random() * Arraylen) + 1];
+        }
+      } else {
+        numArray = [...baseArray];
       }
       setcurrentArray(numArray);
+      setbaseArray(numArray);
       if (sliderTime) {
         setsliderTime(false);
       }
@@ -55,7 +58,7 @@ export default function AlgorithmVisualizer() {
     }
   };
 
-  //tpauseds make a timer that runs in the background so when you move the slider it doesent regenerate the array to many times
+  //this make a timer that runs in the background so when you move the slider it doesent regenerate the array to many times
   async function antiSliderSpam() {
     setTimeout(() => {
       setsliderTime(true);
@@ -64,7 +67,7 @@ export default function AlgorithmVisualizer() {
 
   const handleSliderChange = async (event, newValue) => {
     await setarrayLength(newValue);
-    GenerateArray();
+    GenerateArray("new");
     antiSliderSpam();
   };
 
@@ -75,11 +78,11 @@ export default function AlgorithmVisualizer() {
           disabled={sortRunning}
           variant="contained"
           onClick={() => {
-            GenerateArray();
+            GenerateArray("new");
             antiSliderSpam();
           }}
         >
-          Regenerate Current Array
+          create new array
         </ColorButton>
         <ColorButton
           disabled={sortRunning}
@@ -95,7 +98,8 @@ export default function AlgorithmVisualizer() {
               setcheckCount,
               setsolvedList,
               setsortRunning,
-              paused
+              paused,
+              setpivot
             );
           }}
           style={{ marginLeft: 10 }}
@@ -117,7 +121,8 @@ export default function AlgorithmVisualizer() {
               setpivot,
               setcheckCount,
               setisListSolved,
-              setsortRunning
+              setsortRunning,
+              paused
             );
           }}
           style={{ marginLeft: 10 }}
@@ -126,15 +131,25 @@ export default function AlgorithmVisualizer() {
           SelectionSort
         </ColorButton>
         <ColorButton
+          disabled={sortRunning}
+          variant="contained"
+          onClick={() => {
+            GenerateArray("base");
+            antiSliderSpam();
+          }}
+          style={{ marginLeft: 10 }}
+        >
+          reset
+        </ColorButton>
+        <ColorButton
           disabled={!sortRunning}
           variant="contained"
           onClick={() => {
             paused.current = !paused.current;
-            console.log(!paused);
           }}
           style={{ marginLeft: 10 }}
         >
-          abandon
+          stop
         </ColorButton>
         <div style={{ display: "flex" }}>
           <div>
@@ -193,6 +208,7 @@ export default function AlgorithmVisualizer() {
           solvedList={solvedList}
           pivot={pivot}
           key={uuidv4()}
+          baseArray={baseArray}
         />
       </div>
       <EndInfo checkCount={checkCount} />
