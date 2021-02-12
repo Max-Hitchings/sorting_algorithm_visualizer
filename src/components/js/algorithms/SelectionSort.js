@@ -9,7 +9,8 @@ const SelectionSort = async (
   setpivot,
   setcheckCount,
   setisListSolved,
-  setsortRunning
+  setsortRunning,
+  paused
 ) => {
   await setsortRunning(true);
   //const arr = [2, 8, 5, 3, 9, 4, 1, 4, 7, 1, 3, 8];

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CreateArray from "./CreateArray.jsx";
 import "../css/CreateArray.css";
 import { v4 as uuidv4 } from "uuid";
@@ -11,7 +11,7 @@ import EndInfo from "./EndInfo";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import ReactGA from "react-ga";
 
-//this makes up the AlgorithmVisualizer component
+//tpauseds makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
   //useState means that if that variable ever changes it will re-render any component that uses that state variable
   //all of the set... bellow are the function i will call to update the state variable
@@ -26,6 +26,8 @@ export default function AlgorithmVisualizer() {
   const [pivot, setpivot] = useState([]);
   const [checkCount, setcheckCount] = useState(0);
   const [sortRunning, setsortRunning] = useState(false);
+  //const [paused, setpaused] = useState(false);
+  var paused = useRef(false);
 
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
@@ -53,7 +55,7 @@ export default function AlgorithmVisualizer() {
     }
   };
 
-  //this make a timer that runs in the background so when you move the slider it doesent regenerate the array to many times
+  //tpauseds make a timer that runs in the background so when you move the slider it doesent regenerate the array to many times
   async function antiSliderSpam() {
     setTimeout(() => {
       setsliderTime(true);
@@ -92,7 +94,8 @@ export default function AlgorithmVisualizer() {
               setwrongList,
               setcheckCount,
               setsolvedList,
-              setsortRunning
+              setsortRunning,
+              paused
             );
           }}
           style={{ marginLeft: 10 }}
@@ -122,6 +125,17 @@ export default function AlgorithmVisualizer() {
         >
           SelectionSort
         </ColorButton>
+        <ColorButton
+          disabled={!sortRunning}
+          variant="contained"
+          onClick={() => {
+            paused.current = !paused.current;
+            console.log(!paused);
+          }}
+          style={{ marginLeft: 10 }}
+        >
+          abandon
+        </ColorButton>
         <div style={{ display: "flex" }}>
           <div>
             <div
@@ -135,6 +149,7 @@ export default function AlgorithmVisualizer() {
               Array Size:
             </div>
             <PrettoSlider
+              disabled={sortRunning}
               className="topSlider"
               value={arrayLength}
               onChange={handleSliderChange}
@@ -151,6 +166,7 @@ export default function AlgorithmVisualizer() {
           <div>
             <div className="sliderText">Sort Speed:</div>
             <PrettoSlider
+              disabled={sortRunning}
               className="topSlider"
               value={solveSpeed}
               onChange={(event, newValue) => {

@@ -12,7 +12,8 @@ const BubbleSort = async (
   setwrongList,
   setcheckCount,
   setsolvedList,
-  setsortRunning
+  setsortRunning,
+  paused
 ) => {
   await setsortRunning(true);
   setsolvedList([]);
@@ -23,6 +24,14 @@ const BubbleSort = async (
   while (!solved) {
     solved = true;
     for (var i = 0; i < arrayLength; i++) {
+      if (paused.current) {
+        setcheckingList([]);
+        setcheckCount(count);
+        await setsortRunning(false);
+        paused.current = !paused.current;
+        return;
+      }
+
       setcheckingList([i, i + 1]);
       setcurrentArray(arr);
       await asyncDelay(solveSpeed);
