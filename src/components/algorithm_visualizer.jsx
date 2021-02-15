@@ -13,9 +13,7 @@ import algorithmData from "../algorithmData";
 import InfoIcon from "@material-ui/icons/Info";
 import AlgorithmInfo from "./algorithmInfo.jsx";
 import Switch from "@material-ui/core/Switch";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
+import PurpleSwitch from "./material-ui/Switch.jsx";
 
 //tpauseds makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
@@ -90,12 +88,16 @@ export default function AlgorithmVisualizer() {
   return (
     <div id="algorithmVisuliser_container" style={{ width: "100%" }}>
       <div className="controlBar">
-        <Switch
-          onChange={themeChange}
-          color="primary"
-          checked={darkTheme}
-          className="darkLightSwitch"
-        />
+        <div className="darkLightSwitch">
+          <div className="darkLightSwitch-text">THEME TOGGLE</div>
+          <div className="darkLightSwitch-switch">
+            <PurpleSwitch
+              checked={darkTheme}
+              onChange={themeChange}
+              name="checkedA"
+            />
+          </div>
+        </div>
         <ColorButton
           disabled={sortRunning}
           variant="contained"

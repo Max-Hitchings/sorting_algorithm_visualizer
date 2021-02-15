@@ -28,14 +28,20 @@ body {
   font-family: "Sriracha", cursive;
 }
 
+.floatLeft {
+  float: left;
+}
+
+.darkLightSwitch-switch {
+  transform: translateX(25%);
+}
+
 .darkLightSwitch {
   float: right;
+  margin-right: 35px;
 }
 
 .darkLightSwitch-text {
   color: #45a29e;
-}
-
-.floatLeft {
-  float: left;
+  font-family: "Sriracha", cursive;
 }
