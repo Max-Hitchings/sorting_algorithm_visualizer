@@ -9,6 +9,13 @@ import BubbleSort from "../algorithms/BubbleSort";
 import SelectionSort from "../algorithms/SelectionSort";
 import EndInfo from "./EndInfo";
 import BarChartIcon from "@material-ui/icons/BarChart";
+import algorithmData from "../algorithmData";
+import InfoIcon from "@material-ui/icons/Info";
+import AlgorithmInfo from "./algorithmInfo.jsx";
+import Switch from "@material-ui/core/Switch";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
 
 //tpauseds makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
@@ -26,6 +33,7 @@ export default function AlgorithmVisualizer() {
   const [checkCount, setcheckCount] = useState(0);
   const [sortRunning, setsortRunning] = useState(false);
   const [baseArray, setbaseArray] = useState([]);
+  const [darkTheme, setdarkTheme] = useState(true);
   var paused = useRef(false);
   //useEffect takes a function and a list and whenever the variables in that list change the function will run
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
@@ -71,9 +79,23 @@ export default function AlgorithmVisualizer() {
     antiSliderSpam();
   };
 
+  //var darkTheme = true;
+  const themeChange = () => {
+    darkTheme
+      ? (document.body.style.backgroundColor = "white")
+      : (document.body.style.backgroundColor = "#1f2833");
+    setdarkTheme(!darkTheme);
+  };
+
   return (
     <div id="algorithmVisuliser_container" style={{ width: "100%" }}>
       <div className="controlBar">
+        <Switch
+          onChange={themeChange}
+          color="primary"
+          checked={darkTheme}
+          className="darkLightSwitch"
+        />
         <ColorButton
           disabled={sortRunning}
           variant="contained"
@@ -81,6 +103,8 @@ export default function AlgorithmVisualizer() {
             GenerateArray("new");
             antiSliderSpam();
           }}
+          className="floatLeft"
+          style={{ marginRight: 10, marginTop: 5 }}
         >
           create new array
         </ColorButton>
@@ -102,10 +126,12 @@ export default function AlgorithmVisualizer() {
               setpivot
             );
           }}
-          style={{ marginLeft: 10 }}
+          className="floatLeft"
+          style={{ marginRight: 10, marginTop: 5 }}
           startIcon={<BarChartIcon />}
         >
-          BubbleSort
+          Bubble Sort
+          <AlgorithmInfo algorithmData={algorithmData.BubbleSort} />
         </ColorButton>
         <ColorButton
           disabled={sortRunning}
@@ -125,10 +151,12 @@ export default function AlgorithmVisualizer() {
               paused
             );
           }}
-          style={{ marginLeft: 10 }}
+          className="floatLeft"
+          style={{ marginRight: 10, marginTop: 5 }}
           startIcon={<BarChartIcon />}
         >
-          SelectionSort
+          Selection Sort
+          <AlgorithmInfo algorithmData={algorithmData.SelectionSort} />
         </ColorButton>
         <ColorButton
           disabled={sortRunning}
@@ -137,7 +165,8 @@ export default function AlgorithmVisualizer() {
             GenerateArray("base");
             antiSliderSpam();
           }}
-          style={{ marginLeft: 10 }}
+          className="floatLeft"
+          style={{ marginRight: 10, marginTop: 5 }}
         >
           reset
         </ColorButton>
@@ -147,11 +176,16 @@ export default function AlgorithmVisualizer() {
           onClick={() => {
             paused.current = !paused.current;
           }}
-          style={{ marginLeft: 10 }}
+          className="floatLeft"
+          style={{ marginRight: 10, marginTop: 5 }}
         >
           stop
         </ColorButton>
-        <div style={{ display: "flex" }}>
+
+        <div
+          style={{ display: "flex", marginLeft: "15px" }}
+          className="floatLeft"
+        >
           <div>
             <div
               style={{
@@ -178,7 +212,7 @@ export default function AlgorithmVisualizer() {
               }}
             />
           </div>
-          <div>
+          <div className="floatLeft">
             <div className="sliderText">Sort Speed:</div>
             <PrettoSlider
               disabled={sortRunning}

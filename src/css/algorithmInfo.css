@@ -1,0 +1,60 @@
+.algorithmInfo-Dropdown {
+  display: none;
+  position: absolute;
+  background-color: #00ffee;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  transform: translate(-45%, 10px);
+  border-radius: 10%;
+  min-width: 250px;
+  flex-direction: column;
+  z-index: 1;
+  justify-content: center;
+  padding: 10px;
+}
+
+.algorithmInfo-title {
+  white-space: nowrap;
+  font-size: larger;
+}
+
+.algorithmInfo-row2 {
+  border-top: solid 1px #000;
+  margin-bottom: 5px;
+  text-transform: lowercase;
+}
+
+.algorithmInfo-row3 {
+  border-top: solid 1px #000;
+}
+
+.algorithmInfo-hedder {
+  font-size: medium;
+  text-transform: lowercase;
+  color: rgb(75, 75, 75);
+  font-weight: 900;
+  font-family: "Dosis", sans-serif;
+}
+
+.algorithmInfo-colourContainer {
+  display: inline-block;
+  margin: 5px;
+  justify-content: center;
+}
+
+.algorithmInfo-colourSquare {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  border: solid 2px #000;
+  transform: translateX(-55%);
+}
+
+.algorithmInfo-colourDescription {
+  text-align: center;
+  text-transform: lowercase;
+  font-weight: 600;
+}
+
+.algorithmInfo:hover .algorithmInfo-Dropdown {
+  display: block;
+}

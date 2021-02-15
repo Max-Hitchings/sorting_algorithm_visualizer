@@ -9,7 +9,7 @@ export default function EndInfo(checkCount) {
   const endInfo = useRef();
 
   return (
-    <div>
+    <>
       <div className="endInfo_container" id="endInfo" ref={endInfo}>
         <div
           className="endInfoClose"
@@ -28,6 +28,6 @@ export default function EndInfo(checkCount) {
           </Typography>
         </div>
       </div>
-    </div>
+    </>
   );
 }
