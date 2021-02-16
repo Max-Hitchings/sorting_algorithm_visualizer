@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import CreateArray from "./CreateArray.jsx";
-import "../css/CreateArray.css";
+
 import { v4 as uuidv4 } from "uuid";
-import "../css/algorithm_visualizer.css";
 import PrettoSlider from "./material-ui/Slider";
 import ColorButton from "./material-ui/Button";
 import BubbleSort from "../algorithms/BubbleSort";
 import SelectionSort from "../algorithms/SelectionSort";
 import EndInfo from "./EndInfo";
 import BarChartIcon from "@material-ui/icons/BarChart";
-import algorithmData from "../algorithmData";
+import algorithmData from "./algorithmInfo/algorithmData";
 import InfoIcon from "@material-ui/icons/Info";
-import AlgorithmInfo from "./algorithmInfo.jsx";
+import AlgorithmInfo from "./algorithmInfo/algorithmInfo.jsx";
 import Switch from "@material-ui/core/Switch";
 import PurpleSwitch from "./material-ui/Switch.jsx";
 

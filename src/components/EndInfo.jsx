@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import "../css/endInfo.css";
 import Typography from "@material-ui/core/Typography";
 
 export default function EndInfo(checkCount) {

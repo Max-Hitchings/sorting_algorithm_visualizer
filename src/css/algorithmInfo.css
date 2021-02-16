@@ -5,7 +5,7 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   transform: translate(-45%, 10px);
   border-radius: 10%;
-  min-width: 250px;
+  min-width: 260px;
   flex-direction: column;
   z-index: 1;
   justify-content: center;
@@ -17,10 +17,10 @@
   font-size: larger;
 }
 
-.algorithmInfo-row2 {
+.algorithmInfo-row1 {
   border-top: solid 1px #000;
   margin-bottom: 5px;
-  text-transform: lowercase;
+  text-transform: none;
 }
 
 .algorithmInfo-row3 {
@@ -29,7 +29,7 @@
 
 .algorithmInfo-hedder {
   font-size: medium;
-  text-transform: lowercase;
+  text-transform: none;
   color: rgb(75, 75, 75);
   font-weight: 900;
   font-family: "Dosis", sans-serif;
@@ -57,4 +57,13 @@
 
 .algorithmInfo:hover .algorithmInfo-Dropdown {
   display: block;
+}
+
+.algorithmInfo-oContainer {
+  position: relative;
+  display: inline-block;
+  width: 22%;
+  border: solid 1px #000;
+  margin: 10px;
+  padding: 3px;
 }

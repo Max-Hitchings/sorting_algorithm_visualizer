@@ -1,5 +1,4 @@
 import React from "react";
-import "../css/CreateArray.css";
 
 //this renders the array onscreen with the approprite colours which are passed through in the prameters
 export default function CreateArray({

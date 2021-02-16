@@ -8,7 +8,10 @@ const algorithmData = {
       { colour: "#f34d5e", colourDescription: "Moving" },
       { colour: "rgb(66, 190, 72)", colourDescription: "Sorted" },
     ],
-    o: { best: "O(n)", average: "O(n&sup2)", worst: "O(n<sup>2</sup>)" },
+    o: {
+      base: { best: "O(n)", average: "O(n&sup2)", worst: "O(n<sup>2</sup>)" },
+      sup: { best: "", average: "2", worst: "O(n<sup>2</sup>)" },
+    },
   },
   SelectionSort: {
     algorithm: "Selection Sort",
