@@ -7,11 +7,13 @@ import SelectionSort from "../algorithms/SelectionSort";
 import EndInfo from "./EndInfo";
 import algorithmData from "./algorithmInfo/algorithmData";
 import AlgorithmInfo from "./algorithmInfo/algorithmInfo.jsx";
-import PurpleSwitch from "./material-ui/Switch.jsx";
 
+import PurpleSwitch from "./material-ui/Switch.jsx";
 import PrettoSlider from "./material-ui/Slider";
+import { Button } from "@material-ui/core";
 import ColorButton from "./material-ui/Button";
 import BarChartIcon from "@material-ui/icons/BarChart";
+import GitHubIcon from "@material-ui/icons/GitHub";
 
 //tpauseds makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
@@ -86,16 +88,6 @@ export default function AlgorithmVisualizer() {
   return (
     <div id="algorithmVisuliser_container" style={{ width: "100%" }}>
       <div className="controlBar">
-        <div className="darkLightSwitch">
-          <div className="darkLightSwitch-text">THEME TOGGLE</div>
-          <div className="darkLightSwitch-switch">
-            <PurpleSwitch
-              checked={darkTheme}
-              onChange={themeChange}
-              name="checkedA"
-            />
-          </div>
-        </div>
         <ColorButton
           disabled={sortRunning}
           variant="contained"
@@ -232,6 +224,30 @@ export default function AlgorithmVisualizer() {
             />
           </div>
         </div>
+
+        <div className="darkLightSwitch">
+          <div className="darkLightSwitch-text">THEME TOGGLE</div>
+          <div className="darkLightSwitch-switch">
+            <PurpleSwitch
+              checked={darkTheme}
+              onChange={themeChange}
+              name="checkedA"
+            />
+          </div>
+        </div>
+        <ColorButton
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            window.open(
+              "https://github.com/Max-Hitchings/sorting_algorithm_visualizer/tree/master/src"
+            );
+          }}
+          startIcon={<GitHubIcon />}
+          style={{ float: "right", marginTop: 20, marginRight: 10 }}
+        >
+          source code
+        </ColorButton>
       </div>
       <div className="arrayContainer">
         <CreateArray
