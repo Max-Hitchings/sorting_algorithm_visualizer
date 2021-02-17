@@ -1,6 +1,6 @@
 # The website is at:
 
-https://www.max-hitchings.com/
+https://www.sortingvisualiser.max-hitchings.com/
 
 Learning how to use react js
 
