@@ -1,7 +1,8 @@
 const algorithmData = {
   BubbleSort: {
     algorithm: "Bubble Sort",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    description:
+      "Bubble sort works by recursively stepping through a list comparing the current item against the next item. This is repeated until the list is sorted.",
     colours: [
       { colour: "#45A29E", colourDescription: "Unsorted" },
       { colour: "#66FCF1", colourDescription: "Analysing" },
@@ -19,7 +20,8 @@ const algorithmData = {
   },
   SelectionSort: {
     algorithm: "Selection Sort",
-    description: "exercitation ullamco laboris nisi ut aliquip ex ea commodo",
+    description:
+      "Selection sort works by dividing the array into two parts. a sorted and unsorted part the sorted part starts off empty. It then finds the smallest item in the unsorted array and adds it to the sorted list. This repeats until the array is solved.",
     colours: [
       { colour: "#45A29E", colourDescription: "Unsorted" },
       { colour: "#66FCF1", colourDescription: "Analysing" },
