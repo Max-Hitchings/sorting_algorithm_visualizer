@@ -9,8 +9,12 @@ const algorithmData = {
       { colour: "rgb(66, 190, 72)", colourDescription: "Sorted" },
     ],
     o: {
-      base: { best: "O(n)", average: "O(n&sup2)", worst: "O(n<sup>2</sup>)" },
-      sup: { best: "", average: "2", worst: "O(n<sup>2</sup>)" },
+      base: {
+        best: "O(n",
+        average: "O(n",
+        worst: "O(n",
+      },
+      sup: { best: "", average: "2", worst: "2" },
     },
   },
   SelectionSort: {
@@ -22,7 +26,14 @@ const algorithmData = {
       { colour: "rgb(235, 100, 10)", colourDescription: "Smallest" },
       { colour: "rgb(66, 190, 72)", colourDescription: "Sorted" },
     ],
-    o: { best: "O(n)", average: "O(n&sup2)", worst: "O(n<sup>2</sup>)" },
+    o: {
+      base: {
+        best: "O(n",
+        average: "O(n",
+        worst: "O(n",
+      },
+      sup: { best: "2", average: "2", worst: "2" },
+    },
   },
 };
 
