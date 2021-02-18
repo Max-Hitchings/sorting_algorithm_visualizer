@@ -89,6 +89,25 @@ export default function AlgorithmVisualizer() {
   return (
     <div id="algorithmVisuliser_container" style={{ width: "100%" }}>
       <div className="controlBar">
+        <div className="darkLightSwitch">
+          <div className="darkLightSwitch-text">THEME TOGGLE</div>
+          <div className="darkLightSwitch-switch">
+            <PurpleSwitch checked={darkTheme} onChange={themeChange} />
+          </div>
+        </div>
+        <ColorButton
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            window.open(
+              "https://github.com/Max-Hitchings/sorting_algorithm_visualizer/tree/master/src"
+            );
+          }}
+          startIcon={<GitHubIcon />}
+          style={{ float: "right", marginTop: 20, marginRight: 10 }}
+        >
+          source code
+        </ColorButton>
         <ColorButton
           disabled={sortRunning}
           variant="contained"
@@ -174,7 +193,7 @@ export default function AlgorithmVisualizer() {
           startIcon={<BarChartIcon />}
         >
           insertion Sort (not finished)
-          <AlgorithmInfo algorithmData={algorithmData.BubbleSort} />
+          <AlgorithmInfo algorithmData={algorithmData.InsertionSort} />
         </ColorButton>
         <ColorButton
           disabled={sortRunning}
@@ -250,26 +269,6 @@ export default function AlgorithmVisualizer() {
             />
           </div>
         </div>
-
-        <div className="darkLightSwitch">
-          <div className="darkLightSwitch-text">THEME TOGGLE</div>
-          <div className="darkLightSwitch-switch">
-            <PurpleSwitch checked={darkTheme} onChange={themeChange} />
-          </div>
-        </div>
-        <ColorButton
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            window.open(
-              "https://github.com/Max-Hitchings/sorting_algorithm_visualizer/tree/master/src"
-            );
-          }}
-          startIcon={<GitHubIcon />}
-          style={{ float: "right", marginTop: 20, marginRight: 10 }}
-        >
-          source code
-        </ColorButton>
       </div>
       <div className="arrayContainer">
         <CreateArray

@@ -18,6 +18,7 @@ const algorithmData = {
       sup: { best: "", average: "2", worst: "2" },
     },
   },
+
   SelectionSort: {
     algorithm: "Selection Sort",
     description:
@@ -35,6 +36,21 @@ const algorithmData = {
         worst: "O(n",
       },
       sup: { best: "2", average: "2", worst: "2" },
+    },
+  },
+
+  InsertionSort: {
+    algorithm: "Insertion Sort",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    colours: [],
+    o: {
+      base: {
+        best: "O(n",
+        average: "O(n",
+        worst: "O(n",
+      },
+      sup: { best: "", average: "2", worst: "2" },
     },
   },
 };
