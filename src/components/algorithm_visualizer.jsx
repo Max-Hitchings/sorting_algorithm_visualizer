@@ -7,6 +7,7 @@ import SelectionSort from "../algorithms/SelectionSort";
 import EndInfo from "./EndInfo";
 import algorithmData from "./algorithmInfo/algorithmData";
 import AlgorithmInfo from "./algorithmInfo/algorithmInfo.jsx";
+import InsertionSort from "../algorithms/InsertionSort";
 
 import PurpleSwitch from "./material-ui/Switch.jsx";
 import PrettoSlider from "./material-ui/Slider";
@@ -154,6 +155,31 @@ export default function AlgorithmVisualizer() {
           disabled={sortRunning}
           variant="contained"
           onClick={() => {
+            InsertionSort(
+              [...currentArray],
+              setisListSolved,
+              setcheckingList,
+              setcurrentArray,
+              solveSpeed,
+              setwrongList,
+              setcheckCount,
+              setsolvedList,
+              setsortRunning,
+              paused,
+              setpivot
+            );
+          }}
+          className="floatLeft"
+          style={{ marginRight: 10, marginTop: 5 }}
+          startIcon={<BarChartIcon />}
+        >
+          insertion Sort (not finished)
+          <AlgorithmInfo algorithmData={algorithmData.BubbleSort} />
+        </ColorButton>
+        <ColorButton
+          disabled={sortRunning}
+          variant="contained"
+          onClick={() => {
             GenerateArray("base");
             antiSliderSpam();
           }}
@@ -228,11 +254,7 @@ export default function AlgorithmVisualizer() {
         <div className="darkLightSwitch">
           <div className="darkLightSwitch-text">THEME TOGGLE</div>
           <div className="darkLightSwitch-switch">
-            <PurpleSwitch
-              checked={darkTheme}
-              onChange={themeChange}
-              name="checkedA"
-            />
+            <PurpleSwitch checked={darkTheme} onChange={themeChange} />
           </div>
         </div>
         <ColorButton

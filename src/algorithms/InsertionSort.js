@@ -1,14 +1,62 @@
-const insertion_Sort = (nums) => {
-  for (let i = 1; i < nums.length; i++) {
-    let j = i - 1;
-    let temp = nums[i];
-    while (j >= 0 && nums[j] > temp) {
-      nums[j + 1] = nums[j];
-      j--;
+import asyncDelay from "../functions/delay";
+import abandon from "../functions/abandon";
+
+const InsertionSort = async (
+  arr,
+  setisListSolved,
+  setcheckingList,
+  setcurrentArray,
+  solveSpeed,
+  setwrongList,
+  setcheckCount,
+  setsolvedList,
+  setsortRunning,
+  paused,
+  setpivot
+) => {
+  setsortRunning(true);
+  setsolvedList([]);
+  await setisListSolved(false);
+
+  for (let i = 1; i < arr.length; i++) {
+    if (paused.current) {
+      abandon(setcheckingList, setpivot, setsortRunning);
+      paused.current = !paused.current;
+      return;
     }
-    nums[j + 1] = temp;
+    let prevPos = i - 1;
+    let temp = arr[i];
+
+    setwrongList([prevPos + 1]);
+    await setcurrentArray(arr);
+    await asyncDelay(solveSpeed);
+
+    while (prevPos >= 0 && arr[prevPos] > temp) {
+      if (paused.current) {
+        abandon(setcheckingList, setpivot, setsortRunning);
+        paused.current = !paused.current;
+        return;
+      }
+
+      arr[prevPos + 1] = arr[prevPos];
+      prevPos--;
+      arr[prevPos + 1] = temp;
+
+      setwrongList([prevPos + 1]);
+      setcurrentArray(arr);
+      await asyncDelay(solveSpeed);
+    }
+
+    arr[prevPos + 1] = temp;
+    setwrongList([]);
+    setcurrentArray(arr);
+    await asyncDelay(solveSpeed);
   }
-  return nums;
+  await setcurrentArray(arr);
+  setcheckingList([]);
+  setisListSolved(true);
+  setcheckCount(10);
+  await setsortRunning(false);
 };
-console.log(insertion_Sort([3, 0, 2, 5, -1, 4, 1]));
-console.log(insertion_Sort([2, 6, 5, 12, -1, 3, 8, 7, 1, -4, 0, 23, 1]));
+
+export default InsertionSort;
