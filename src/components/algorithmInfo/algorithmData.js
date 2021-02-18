@@ -2,7 +2,7 @@ const algorithmData = {
   BubbleSort: {
     algorithm: "Bubble Sort",
     description:
-      "Bubble sort works by iteratively stepping through a list comparing the current item against the next item and swaping them if the next item is larger. This is repeated until the list is sorted.",
+      "Bubble sort works by iteratively stepping through a list comparing the current item against the next item and swaping them if the next item is smaller. This is repeated until the list is sorted.",
     colours: [
       { colour: "#45A29E", colourDescription: "Unsorted" },
       { colour: "#66FCF1", colourDescription: "Analysing" },
