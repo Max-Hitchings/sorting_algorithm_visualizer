@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import CreateArray from "./CreateArray.jsx";
 import BubbleSort from "../algorithms/BubbleSort";
@@ -11,7 +10,6 @@ import InsertionSort from "../algorithms/InsertionSort";
 
 import PurpleSwitch from "./material-ui/Switch.jsx";
 import PrettoSlider from "./material-ui/Slider";
-import { Button } from "@material-ui/core";
 import ColorButton from "./material-ui/Button";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import GitHubIcon from "@material-ui/icons/GitHub";
@@ -95,19 +93,20 @@ export default function AlgorithmVisualizer() {
             <PurpleSwitch checked={darkTheme} onChange={themeChange} />
           </div>
         </div>
-        <ColorButton
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            window.open(
-              "https://github.com/Max-Hitchings/sorting_algorithm_visualizer/tree/master/src"
-            );
-          }}
-          startIcon={<GitHubIcon />}
-          style={{ float: "right", marginTop: 20, marginRight: 10 }}
+        <a
+          href="https://github.com/Max-Hitchings/sorting_algorithm_visualizer/tree/master/src"
+          target="_blank"
+          rel="noreferrer"
         >
-          source code
-        </ColorButton>
+          <ColorButton
+            variant="contained"
+            color="primary"
+            startIcon={<GitHubIcon />}
+            style={{ float: "right", marginTop: 20, marginRight: 10 }}
+          >
+            source code
+          </ColorButton>
+        </a>
         <ColorButton
           disabled={sortRunning}
           variant="contained"
@@ -278,7 +277,6 @@ export default function AlgorithmVisualizer() {
           isListSolved={isListSolved}
           solvedList={solvedList}
           pivot={pivot}
-          key={uuidv4()}
           baseArray={baseArray}
         />
       </div>

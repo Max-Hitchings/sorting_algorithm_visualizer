@@ -1,6 +1,4 @@
-import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { purple } from "@material-ui/core/colors";
 import Switch from "@material-ui/core/Switch";
 
 const PurpleSwitch = withStyles({
