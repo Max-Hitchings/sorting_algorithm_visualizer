@@ -1,11 +1,17 @@
-//react boilerplate code
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
+import AlgorithmVisualizer from "./components/algorithm_visualizer.jsx";
+
+// ALL CSS FILES
+import "./css/algorithmInfo.css";
+import "./css/CreateArray.css";
+import "./css/algorithm_visualizer.css";
+import "./css/CreateArray.css";
+import "./css/endInfo.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AlgorithmVisualizer />
   </React.StrictMode>,
   document.getElementById("root")
 );

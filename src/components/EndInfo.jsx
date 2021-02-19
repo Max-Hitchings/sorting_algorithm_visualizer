@@ -10,12 +10,7 @@ export default function EndInfo(checkCount) {
   return (
     <>
       <div className="endInfo_container" id="endInfo" ref={endInfo}>
-        <div
-          className="endInfoClose"
-          onClick={() => {
-            hideInfo();
-          }}
-        >
+        <div className="endInfoClose" onClick={hideInfo}>
           &times;
         </div>
         <div className="endInfo_TextContainer">
