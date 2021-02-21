@@ -83,7 +83,7 @@ export default function AlgorithmVisualizer() {
       : (document.body.style.backgroundColor = "#1f2833");
     setdarkTheme(!darkTheme);
   };
-
+  var newSpeed;
   return (
     <div id="algorithmVisuliser_container" style={{ width: "100%" }}>
       <div className="controlBar">
@@ -253,14 +253,15 @@ export default function AlgorithmVisualizer() {
             <PrettoSlider
               disabled={sortRunning}
               className="topSlider"
-              value={solveSpeed}
+              value={10 - solveSpeed / 100}
               onChange={(event, newValue) => {
-                setsolveSpeed(newValue);
+                newSpeed = (10 - newValue) * 100;
+                setsolveSpeed(newSpeed);
               }}
               valueLabelDisplay="auto"
               aria-label="pretto slider"
               min={1}
-              max={2000}
+              max={10}
               style={{
                 width: 300,
                 marginLeft: 20,
