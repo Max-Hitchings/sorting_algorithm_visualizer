@@ -37,14 +37,6 @@ const SelectionSort = async (
       await asyncDelay(solveSpeed);
     }
     const temp1 = arr[x];
-    console.log(
-      "arr[x]:",
-      arr[x],
-      "arr[min]:",
-      arr[currentMin],
-      "min:",
-      currentMin
-    );
     arr[x] = arr[currentMin];
     arr[currentMin] = temp1;
     setcurrentArray(arr);
@@ -53,8 +45,6 @@ const SelectionSort = async (
     setsolvedList([...solvedItems]);
     setpivot([]);
     await asyncDelay(solveSpeed);
-
-    console.log(x);
   }
   setcurrentArray(arr);
   setcheckingList([]);

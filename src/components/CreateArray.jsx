@@ -27,7 +27,7 @@ export default function CreateArray({
     const innerNum = currentArray.length < 45 ? arrayItem : null;
     return (
       <span
-        id={index}
+        key={index}
         className="arrayItem"
         style={{
           marginLeft: margin,

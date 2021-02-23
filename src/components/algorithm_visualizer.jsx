@@ -36,6 +36,8 @@ export default function AlgorithmVisualizer() {
   //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
   useEffect(() => {
     GenerateArray("new");
+    // The next line is to remove the error that an empty array brings to the useEffect hook
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const GenerateArray = (generateNew) => {
@@ -148,7 +150,6 @@ export default function AlgorithmVisualizer() {
           disabled={sortRunning}
           variant="contained"
           onClick={() => {
-            //console.log(currentArray);
             SelectionSort(
               [...currentArray],
               setcheckingList,
