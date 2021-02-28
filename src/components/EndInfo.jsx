@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import Typography from "@material-ui/core/Typography";
-import { v4 as uuidv4 } from "uuid"; //so i can generate unique ID's easily
 
 export default function EndInfo(checkCount) {
   const hideInfo = () => {
@@ -18,11 +17,7 @@ export default function EndInfo(checkCount) {
           <Typography className="endInfo_counterText" variant="h5">
             Checks Performed:
           </Typography>
-          <Typography
-            className="endInfo_counterText"
-            variant="h5"
-            key={uuidv4()}
-          >
+          <Typography className="endInfo_counterText" variant="h5">
             {checkCount.checkCount}
           </Typography>
         </div>

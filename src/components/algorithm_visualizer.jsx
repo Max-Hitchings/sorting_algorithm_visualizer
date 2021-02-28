@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 import CreateArray from "./CreateArray.jsx";
 import BubbleSort from "../algorithms/BubbleSort";
@@ -32,38 +32,33 @@ export default function AlgorithmVisualizer() {
   const [baseArray, setbaseArray] = useState([]);
   const [darkTheme, setdarkTheme] = useState(true);
   var paused = useRef(false);
-  //useEffect takes a function and a list and whenever the variables in that list change the function will run
-  //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
-  useEffect(() => {
-    GenerateArray("new");
-    // The next line is to remove the error that an empty array brings to the useEffect hook
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  const GenerateArray = (generateNew) => {
-    setisListSolved(false);
-    setsolvedList([]);
-    //will only make a new array if the antiSpamSlider funcion isnt running (if the sliderTime variable is false)
-    if (sliderTime) {
-      const Arraylen = arrayLength;
-      let numArray = [];
-      if (generateNew === "new") {
-        for (let i = 0; i < Arraylen; i++) {
-          //adds a new random number to the array
-          //should probably use .push here will update soon
-          numArray = [...numArray, Math.floor(Math.random() * Arraylen) + 1];
-        }
-      } else {
-        numArray = [...baseArray];
-      }
-      setcurrentArray(numArray);
-      setbaseArray(numArray);
+  const GenerateArray = useCallback(
+    (generateNew) => {
+      setisListSolved(false);
+      setsolvedList([]);
+      //will only make a new array if the antiSpamSlider funcion isnt running (if the sliderTime variable is false)
       if (sliderTime) {
-        setsliderTime(false);
+        const Arraylen = arrayLength;
+        let numArray = [];
+        if (generateNew === "new") {
+          for (let i = 0; i < Arraylen; i++) {
+            //adds a new random number to the array
+            //should probably use .push here will update soon
+            numArray = [...numArray, Math.floor(Math.random() * Arraylen) + 1];
+          }
+        } else {
+          numArray = [...baseArray];
+        }
+        setcurrentArray(numArray);
+        setbaseArray(numArray);
+        if (sliderTime) {
+          setsliderTime(false);
+        }
       }
-      return numArray;
-    }
-  };
+    },
+    [arrayLength, baseArray, sliderTime]
+  );
 
   //this make a timer that runs in the background so when you move the slider it doesent regenerate the array to many times
   async function antiSliderSpam() {
@@ -85,6 +80,13 @@ export default function AlgorithmVisualizer() {
       : (document.body.style.backgroundColor = "#1f2833");
     setdarkTheme(!darkTheme);
   };
+
+  //useEffect takes a function and a list and whenever the variables in that list change the function will run
+  //will only run when the page runs becasue the 2nd parameter (the epmty list) will never change
+  useEffect(() => {
+    GenerateArray("new");
+  }, [GenerateArray]);
+
   var newSpeed;
   return (
     <div id="algorithmVisuliser_container" style={{ width: "100%" }}>
