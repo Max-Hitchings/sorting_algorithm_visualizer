@@ -14,7 +14,7 @@ export default function AlgorithmInfo(data) {
           transform: "translateY(3px)",
         }}
       />
-      <div className="algorithmInfo-Dropdown">
+      <div className="algorithmInfo-Dropdown hvr-bubble-top">
         <div className="algorithmInfo-title">
           {data.algorithmData.algorithm}
         </div>
