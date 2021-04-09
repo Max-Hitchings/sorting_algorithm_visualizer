@@ -6,8 +6,6 @@ Learning how to use react js
 
 Made from scratch by me using react and some material ui components
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/08d4f1c5-8d1c-48e7-a560-9cc69ac8d335/deploy-status)](https://www.sortingvisualiser.max-hitchings.com/)
-
 ## bubble sort
 
 Bubble sort works by iteratively stepping through a list comparing the current item against the next item and swaping them if the next item is smaller. This is repeated until the list is sorted.
