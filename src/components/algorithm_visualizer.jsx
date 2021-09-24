@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import LogRocket from "logrocket";
 
 import CreateArray from "./CreateArray.jsx";
 import BubbleSort from "../algorithms/BubbleSort";
@@ -16,6 +17,7 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 
 //tpauseds makes up the AlgorithmVisualizer component
 export default function AlgorithmVisualizer() {
+  LogRocket.init("w1zp0y/sorting-algorithm");
   //useState means that if that variable ever changes it will re-render any component that uses that state variable
   //all of the set... bellow are the function i will call to update the state variable
   const [currentArray, setcurrentArray] = useState([]);
